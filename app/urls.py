@@ -18,6 +18,17 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
 
+
+router = routers.DefaultRouter(trailing_slash=False)
+
+# BELOW: example of url configuration for seperate components/modules
+
+# note: router.register utilizes->  path('', include(router.urls))  <-seen in urlpatterns
+# example: pulled from 'WordPlace' project
+# router.register(r'createdwords', CreatedWordsView, 'createdword')
+# router.register(r'favoritedwords', FavoritedWordsView, 'favoritedword')
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
 ]
