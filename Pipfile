@@ -10,6 +10,7 @@ autopep8 = "*"
 pylint-django = "*"
 django-cors-headers = "*"
 pylint = "*"
+django-filter = "*"
 
 [dev-packages]
 

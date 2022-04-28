@@ -25,7 +25,8 @@ SECRET_KEY = 'django-insecure-uad&(p%&5mby@sh*sq1d4q!rdb%p6mx3n_u0)-a^8t^-t!m!-^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# SECURITY WARNING: when ready for production, change this!
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'corsheaders',
+    'django_filters',
     'backend',
 ]
 
