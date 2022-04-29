@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -43,6 +44,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'django_filters',
     'backend',
+
 ]
 
 CORS_ORIGIN_WHITELIST = (
@@ -95,13 +97,29 @@ WSGI_APPLICATION = 'app.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'mssql',
+        'NAME': 'WaveguideDB',
+        'HOST': '192.168.1.20,1433',
+        'USER': 'wave',
+        'PASSWORD': 'wave',
+        'Trusted_Connection': 'yes',
+        'OPTIONS': {
+            'driver': 'ODBC Driver 18 for SQL Server'
+        }
     }
 }
-
+# conn = pyodbc.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER=' +
+#                       server + ';DATABASE=' + db + ';UID=' + user + ';PWD=' + password)
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators

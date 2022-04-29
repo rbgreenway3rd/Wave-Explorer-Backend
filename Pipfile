@@ -11,6 +11,10 @@ pylint-django = "*"
 django-cors-headers = "*"
 pylint = "*"
 django-filter = "*"
+mssql-django = "*"
+django-rest-framework = "*"
+django-mssql-backend = "*"
+django-pyodbc = "*"
 
 [dev-packages]
 
