@@ -109,12 +109,14 @@ DATABASES = {
     'default': {
         'ENGINE': 'mssql',
         'NAME': 'WaveguideDB',
-        'HOST': '192.168.1.20,1433',
+        'HOST': 'localhost',
         'USER': 'wave',
         'PASSWORD': 'wave',
+        'PORT': '1433',
         'Trusted_Connection': 'yes',
         'OPTIONS': {
-            'driver': 'ODBC Driver 18 for SQL Server'
+            'driver': 'ODBC Driver 17 for SQL Server',
+            'Encrypt': 'no',
         }
     }
 }

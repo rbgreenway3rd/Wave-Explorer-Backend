@@ -20,3 +20,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+# CONNECTION STRING: DRIVER=ODBC Driver 17 for SQL Server;SERVER=localhost,1433;UID=wave;PWD=wave;DATABASE=WaveguideDB;MARS_Connection=yes
