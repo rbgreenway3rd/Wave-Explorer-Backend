@@ -17,7 +17,11 @@ from rest_framework import routers
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
-from backend import views
+from backend.views.plate import PlateView
+from backend.views.experiment import ExperimentView
+
+
+
 
 
 router = routers.DefaultRouter(trailing_slash=False)
@@ -25,13 +29,13 @@ router = routers.DefaultRouter(trailing_slash=False)
 # BELOW: example of url configuration for seperate components/modules
 
 # note: router.register utilizes->  path('', include(router.urls))  <-seen in urlpatterns
-# example: pulled from 'WordPlace' project
-# router.register(r'createdwords', CreatedWordsView, 'createdword')
-# router.register(r'favoritedwords', FavoritedWordsView, 'favoritedword')
+router.register(r'plate', PlateView, 'plate')
+router.register(r'experiment', ExperimentView, 'experiment')
 
 
 urlpatterns = [
+    path('', include(router.urls)),
     path('admin/', admin.site.urls),
     path('api-auth', include('rest_framework.urls', namespace='rest_framework')),
-    path('', views.home, name="home")
+    # path('', views.home, name="home")
 ]

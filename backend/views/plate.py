@@ -14,11 +14,10 @@ class PlateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Plate
         url = serializers.HyperlinkedIdentityField(
-            view_name='Project', lookup_field='id')
-        fields = ('PlateID', 'Project', 'OwnerID', 'Barcode',
-                  'PlateTypeID', 'Description', 'IsPublic')
+            view_name='plate', lookup_field='plateid')
+        fields = ('plateid', 'projectid', 'ownerid', 'barcode',
+                  'platetypeid', 'description', 'ispublic')
         depth = 1
-
 
 class PlateView(ViewSet):
     """Request handlers for Plates in the Wave Explorer Application"""
@@ -31,6 +30,7 @@ class PlateView(ViewSet):
             Response -- JSON serialized Plate
         """
         try:
+            # The '.get()' method will raise an exception if the queryset contains more than one object
             plate = Plate.objects.get(pk=pk)
             serializer = PlateSerializer(
                 plate, context={'request': request})
@@ -38,18 +38,15 @@ class PlateView(ViewSet):
         except Exception as ex:
             return HttpResponseServerError(ex)
 
-    # def list(self, request):
-    #     """Handle GET requests to get all created_words authored by current user
+    def list(self, request):
+        """Handle GET requests to get all plates
 
-    #     Returns:
-    #         Response -- JSON serialized list of created_words
-    #     """
-    #     user_id = request.auth.user.id
-    #     user_created_words = CreatedWords.objects.filter(
-    #         user=user_id)
-    #     # Note the additional `many=True` argument to the
-    #     # serializer. It's needed when you are serializing
-    #     # a list of objects instead of a single object.
-    #     serializer = CreatedWordsSerializer(
-    #         user_created_words, many=True, context={'request': request})
-    #     return Response(serializer.data)
+        Returns:
+            Response -- JSON serialized list of plates
+        """
+        plate = Plate.objects.all() 
+        # Note: The `many=True` argument in the serializer.
+        # Needed when serializing a list of objects instead of a single object.
+        serializer = PlateSerializer(
+            plate, many=True, context={'request': request})
+        return Response(serializer.data)

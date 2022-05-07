@@ -15,9 +15,9 @@ class ExperimentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Experiment
         url = serializers.HyperlinkedIdentityField(
-            view_name='plate', lookup_field='id'
+            view_name='experiment', lookup_field='experimentid'
         )
-        fields = ('id', 'Plate', 'MethodID', 'TimeStamp', 'Description', 'HorzBinning', 'VertBinning', 'ROI_Origin_X', 'ROI_Origin_Y', 'ROI_Width', 'ROI_Height' )
+        fields = ('experimentid', 'plateid', 'methodid', 'timestamp', 'description', 'horzbinning', 'vertbinning', 'roi_origin_x', 'roi_origin_y', 'roi_width', 'roi_height' )
         depth = 1
 
 
@@ -41,18 +41,13 @@ class ExperimentView(ViewSet):
         except Exception as ex:
             return HttpResponseServerError(ex)
 
-    # def list(self, request):
-    #     """Handle GET requests to get all Experiments belonging to current Plate - 'plateid'
+    def list(self, request):
+        """Handle GET requests to get all Experiments belonging to current Plate - 'plateid'
 
-    #     Returns:
-    #         Response -- JSON serialized list of Experiments
-    #     """
-    #     plateid = request.models.user.id
-    #     user_created_words = CreatedWords.objects.filter(
-    #         user=user_id)
-    #     # Note the additional `many=True` argument to the
-    #     # serializer. It's needed when you are serializing
-    #     # a list of objects instead of a single object.
-    #     serializer = CreatedWordsSerializer(
-    #         user_created_words, many=True, context={'request': request})
-    #     return Response(serializer.data)
+        Returns:
+            Response -- JSON serialized list of Experiments
+        """
+        experiment = Experiment.objects.all()
+        serializer = ExperimentSerializer(
+            experiment, many=True, context={'request': request})
+        return Response(serializer.data)
