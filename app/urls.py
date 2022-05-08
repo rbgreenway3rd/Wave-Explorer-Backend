@@ -19,6 +19,11 @@ from django.urls import path
 from django.conf.urls import include
 from backend.views.plate import PlateView
 from backend.views.experiment import ExperimentView
+from backend.views.experiment_indicator import ExperimentindicatorView
+from backend.views.experiment_image import ExperimentimageView
+from backend.views.project import ProjectView
+from backend.views.user import UserView
+from backend.views.user_project import UserProjectView
 
 
 
@@ -31,6 +36,11 @@ router = routers.DefaultRouter(trailing_slash=False)
 # note: router.register utilizes->  path('', include(router.urls))  <-seen in urlpatterns
 router.register(r'plate', PlateView, 'plate')
 router.register(r'experiment', ExperimentView, 'experiment')
+router.register(r'experimentindicator', ExperimentindicatorView, 'experimentindicator')
+router.register(r'experimentimage', ExperimentimageView, 'experimentimage')
+router.register(r'project', ProjectView, 'project')
+router.register(r'user', UserView, 'user')
+router.register(r'userproject', UserProjectView, 'userproject')
 
 
 urlpatterns = [
