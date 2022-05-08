@@ -17,6 +17,7 @@ from rest_framework import routers
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
+from backend.views.experiment_compound_plate import ExperimentcompoundplateView
 from backend.views.plate import PlateView
 from backend.views.experiment import ExperimentView
 from backend.views.experiment_indicator import ExperimentindicatorView
@@ -24,6 +25,9 @@ from backend.views.experiment_image import ExperimentimageView
 from backend.views.project import ProjectView
 from backend.views.user import UserView
 from backend.views.user_project import UserProjectView
+from backend.views.analysis import AnalysisView
+from backend.views.analysis_frame import AnalysisFrameView
+from backend.views.event_marker import EventmarkerView
 
 
 
@@ -38,6 +42,10 @@ router.register(r'plate', PlateView, 'plate')
 router.register(r'experiment', ExperimentView, 'experiment')
 router.register(r'experimentindicator', ExperimentindicatorView, 'experimentindicator')
 router.register(r'experimentimage', ExperimentimageView, 'experimentimage')
+router.register(r'analysis', AnalysisView, 'analysis')
+router.register(r'analysisframe', AnalysisFrameView, 'analysisframe')
+router.register(r'eventmarker', EventmarkerView, 'eventmarker')
+router.register(r'experimentcompoundplate', ExperimentcompoundplateView, 'experimentcompoundplate')
 router.register(r'project', ProjectView, 'project')
 router.register(r'user', UserView, 'user')
 router.register(r'userproject', UserProjectView, 'userproject')
