@@ -18,7 +18,7 @@ class ExperimentimageSerializer(serializers.ModelSerializer):
             view_name='experimentimage', lookup_field='experimentimageid'
         )
         fields = ('experimentimageid','timestamp', 'experimentindicatorid', 'msecs', 'maxpixelvalue', 'compressionalgorithm', 'filepath' )
-        depth = 3
+        depth = 4
         #depth=3 allows retrieval of related tables nested within parent table
 
 
