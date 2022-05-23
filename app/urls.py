@@ -28,6 +28,7 @@ from backend.views.user_project import UserProjectView
 from backend.views.analysis import AnalysisView
 from backend.views.analysis_frame import AnalysisFrameView
 from backend.views.event_marker import EventmarkerView
+from backend.views.auth import login_user
 
 
 
@@ -53,6 +54,7 @@ router.register(r'userproject', UserProjectView, 'userproject')
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('login', login_user),
     path('admin/', admin.site.urls),
     path('api-auth', include('rest_framework.urls', namespace='rest_framework')),
     # path('', views.home, name="home")
