@@ -18,7 +18,7 @@ class AnalysisFrameSerializer(serializers.ModelSerializer):
             view_name='analysisframe', lookup_field='analysisframeid'
         )
         fields = ('analysisframeid', 'analysisid', 'sequencenumber', 'rows', 'cols', 'valuestring'  )
-        depth = 1
+        depth = 5
         #depth=3 allows retrieval of related tables nested within parent table
 
 
